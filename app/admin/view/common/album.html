@@ -1,0 +1,68 @@
+<link href="/public/admin/uploadify/uploadify.css" rel="stylesheet" />
+<script src="/public/admin/uploadify/jquery.uploadify.min.js"></script>
+<div class="album-upload">
+	<input id="file_upload" type="file" multiple="true" />
+</div>
+<div class="album-list"></div>
+<script>
+//文件上传
+$("#file_upload").uploadify({
+	"formData":{"token":$.getCSRFToken(),"PHPSESSID":"<?=I('PHPSESSID','cookie','text')?>"},
+	"swf":"/public/admin/uploadify/uploadify.swf", //Flash文件
+	"uploader":"?p=admin&c=upload&a=uploadify", //上传地址
+	"buttonText":"选择图片上传", //按钮文本
+	"fileObjName":"upfile",
+	"onUploadSuccess":function(file, data, response){
+		if(response){
+			data = $.parseJSON(data);
+			if(data.state==="SUCCESS"){
+				albumAdd({"src":data.url,"isThumb":false});
+			}else{
+				$.showTip(data.state); //上传失败，显示错误信息
+			}
+		}
+	}
+});
+//默认显示相册图片
+(function(){
+	var album = <?=empty($data['goods']['album'])?'[]':json_encode(explode('|',$data['goods']['album']))?>; //相册数据
+	var thumb = "<?=isset($data['goods']['thumb'])?$data['goods']['thumb']:''?>"; //封面图
+	thumb && album.unshift(thumb);//将封面图追加到相册
+	for(var i in album){
+		//添加图片 {相册，封面图}
+		albumAdd({"src":album[i],"isThumb":(thumb===album[i])});
+	}
+})();
+//向相册添加一张图片
+function albumAdd(data){
+	var url = "/public/upload/big/"; //上传目录
+	var $obj = $(".album-list"); //追加对象
+	var $wrap = $('<div class="album-each"><img /><p><i>设为封面</i><i>删除</i></p><input type="hidden" /></div>');
+	$wrap.find('img').attr("src",url+data.src);
+	$wrap.find("i:first").click(setThumb);
+	$wrap.find("i:last").click(removeMe);
+	if(data.isThumb){
+		$wrap.find("input").attr("name","thumb").val(data.src);
+		$wrap.find("i:first").text("当前封面").addClass("light");
+	}else{
+		$wrap.find("input").attr("name","album[]").val(data.src);
+	}
+	$obj.append($wrap);
+	//设为封面
+	function setThumb(){
+		//取消原来的封面
+		var $each = $(".album-each");
+		$each.find("i:first").text("设为封面").removeClass("light");
+		$each.find("input[name=thumb]").attr("name","album[]");
+		//将当前设为封面
+		var pObj = $(this).parents(".album-each");
+		pObj.find("i:first").text("当前封面").addClass("light");
+		pObj.find("input").attr("name","thumb");
+	}
+	//删除图片
+	function removeMe(){
+		//从页面中删除
+		$(this).parents(".album-each").remove();
+	}
+}
+</script>

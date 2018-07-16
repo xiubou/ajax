@@ -1,0 +1,15 @@
+<?php require COMMON_VIEW.'header.html' ?>
+<div class="usercenter">
+	<?php require COMMON_VIEW.'user_menu.html'; ?>
+	<div class="content">
+		<div class="title">管理收货地址</div>
+		<table class="addr">
+			<tr><th width="95">收件人：</th><td><?=$data['consignee']?></td></tr>
+			<tr><th>详细地址：</th><td><?=$data['address']?></td></tr>
+			<tr><th>手机：</th><td><?=$data['phone']?></td></tr>
+			<tr><th>邮箱：</th><td><?=$data['email']?></td></tr>
+		</table>
+		<a href="/?c=user&a=addrEdit" class="addr-a">修改地址</a>
+	</div>
+</div>
+<?php require COMMON_VIEW.'footer.html'; ?>

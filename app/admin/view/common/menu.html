@@ -1,0 +1,17 @@
+<div class="menu">
+	<div class="box">
+		<div class="head"><i></i><div>管理菜单</div></div>
+		<ul><li><a href="/?p=admin&c=index&a=index">后台首页</a></li>
+			<li><a href="/?p=admin&c=goods&a=add" id="goods_add">商品添加</a></li>
+			<li><a href="/?p=admin&c=goods&a=index" id="goods_index">商品列表</a></li>
+			<li><a href="/?p=admin&c=category&a=add" id="category_add">分类添加</a></li>
+			<li><a href="/?p=admin&c=category&a=index" id="category_index">分类列表</a></li>
+			<li><a href="/?p=admin&c=recycle&a=index" id="recycle_index">回收站</a></li>
+			<li><a href="/?p=admin&c=user&a=index" id="user_index">会员管理</a></li>
+		</ul>
+	</div>
+</div>
+<script>
+//点亮当前菜单
+$("#<?=CONTROLLER?>_<?=ACTION?>").addClass("curr");
+</script>

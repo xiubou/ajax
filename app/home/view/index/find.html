@@ -1,0 +1,82 @@
+<?php require COMMON_VIEW.'header.html' ?>
+<div class="find">
+<div class="find-left left"><div class="title">相关商品推荐</div>
+	<?php foreach($data['goods']['recommend'] as $v): ?>
+	<ul class="item left">
+		<li><a href="/?a=goods&id=<?=$v['id']?>" target="_blank">
+			<?php if($v['thumb']): ?>
+				<img  src="/public/upload/small/<?=$v['thumb']?>" />
+			<?php else: ?>
+				<img src="/public/home/images/preview.jpg" />
+			<?php endif; ?>
+		</a></li>
+		<li class="goods"><a href="/?a=goods&id=<?=$v['id']?>" target="_blank"><?=$v['name']?></a></li>
+		<li class="price">￥<?=$v['price']?></li>
+	</ul>
+	<?php endforeach; ?>
+</div>
+<div class="find-right left">
+	<ul class="filter">
+		<li class="filter-title">商品列表</li>
+		<?php if(isset($data['category']['parent'])): $i=0; foreach($data['category']['parent'] as $v): ?>
+			<li><dl><dt>分类<?=++$i?>：</dt><dd>
+				<?php foreach($v as $vv):?>
+					<a href="/<?=View::mkFilterURL('cid',$vv['id'])?>" class="cid-<?=$vv['id']?>" ><?=$vv['name']?></a>
+				<?php endforeach;?>
+			</dd></dl></li>
+		<?php endforeach;endif; ?>
+		<li><dl><dt>价格：</dt><dd>
+			<a href="/<?=View::mkFilterURL('price')?>" class="price-0">全部</a>
+			<?php if(!empty($data['goods']['price'])): foreach($data['goods']['price'] as $v): ?>
+				<a href="/<?=View::mkFilterURL('price',$v)?>" class="price-<?=$v?>"><?=$v?></a>
+			<?php endforeach;endif; ?>
+		</dd></dl></li>
+		<li><dl><dt>排序：</dt><dd><a
+			href="/<?=View::mkFilterURL('order')?>" class="order-0">最新上架</a><a 
+			href="/<?=View::mkFilterURL('order','price-asc')?>" class="order-price-asc">价格升序</a><a
+			href="/<?=View::mkFilterURL('order','price-desc')?>" class="order-price-desc">价格降序</a>
+		</dd></dl></li>
+	</ul>
+	<div class="find-item">
+		<?php if($data['goods']['data']): foreach($data['goods']['data'] as $v): ?>
+			<ul class="item left">
+				<li><a href="/?a=goods&id=<?=$v['id']?>" target="_blank">
+					<?php if($v['thumb']):?>
+						<img style="width:100%; height:100%" src="/public/upload/small/<?=$v['thumb']?>">
+					<?php else: ?>
+						<img src="/public/home/images/preview.jpg" />
+					<?php endif;?>
+				</a></li>
+				<li class="goods"><a href="/?a=goods&id=<?=$v['id']?>" target="_blank"><?=$v['name']?></a></li>
+				<li class="price">￥<?=$v['price']?></li>
+			</ul>
+		<?php endforeach; ?>
+		<div class="pagelist"><?=$data['goods']['pagelist']?></div>
+		<?php else: ?>
+		<div class="empty-tip">没有找到您需要的商品。</div>
+		<?php endif; ?>
+	</div>
+</div>
+</div>
+<script>
+//筛选列表，分类的当前选中效果
+(function(){
+	var cids = <?=json_encode($data['category']['pids'])?>;
+	for(var i in cids){
+		$(".cid-"+cids[i]).addClass("curr");
+	}
+}());
+//商品价格的选中效果
+<?php if(isset($_GET['price'])):?>
+	$(".price-<?=$_GET['price']?>").addClass("curr");
+<?php else: ?>
+	$(".price-0").addClass("curr");
+<?php endif; ?>
+//商品排序的选中效果
+<?php if(isset($_GET['order'])): ?>
+	$(".order-<?=$_GET['order']?>").addClass("curr");
+<?php else: ?>
+	$(".order-0").addClass("curr");
+<?php endif; ?>
+</script>
+<?php require COMMON_VIEW.'footer.html'; ?>

@@ -1,0 +1,63 @@
+<footer style="background-color: rgba(0,0,0,0);border:none;">
+	<!--<div  id="foot" style="background-color: #C7254E;height: 160px;padding-top: 20px;">
+		<a href="http://www.baidu.com">百度一下</a> |
+		<a href="go.html">首页</a> |
+		<a href="main.php">美食盛况</a> |
+		<a href="main.php">食谱欣赏</a> |
+		<a href="iframe.php?a=about.php">关于我们</a> |
+		<a href="iframe.php?a=contact.php">联系我们</a>
+		<p>联系电话：18072961667</p>
+		<p>地址：浙江省杭州市拱墅区浙江大学城市学院</p>
+		<p>@计算机与计算分院 信管1501 31501142 林韦唯</p>
+		<p>@计算机与计算分院 信管1502 31501174 陈昱辰</p>
+	</div>-->
+	<div class="go-top">
+		<a href="#top" class="scroll-top1" >
+			<i class="fa fa-angle-up"></i>TOP
+		</a>
+	</div>
+</footer>
+</body>
+<script>
+		$(function() {
+			$('#example').okzoom({
+				width: 150,
+				height: 150,
+				border: "1px solid black",
+				shadow: "0 0 5px #000"
+			});
+		});
+		/*------ Main Menu Toggle at responsive --------*/
+		var responsive_toggle = $('.responsive-toggle');
+		responsive_toggle.on('click', function(e) {
+			$("body").toggleClass('off-canvas-body');
+			responsive_toggle.toggleClass("fa-bars fa-close");
+			e.preventDefault();
+		});
+		/*------ Custom Scroll Style --------*/
+		var scroll_js = $('.scroll-js');
+		var $window = $(window);
+		if($window.width() < 1200) {
+			if(scroll_js.length > 0) {
+				scroll_js.mCustomScrollbar({
+					theme: "dark-2",
+					scrollButtons: {
+						enable: false
+					}
+				});
+			}
+		}
+
+		function addToCart(pid, username) {
+			var num = document.getElementById("input-quantity").value;
+			//alert("加入加入失败了");
+			//print(num);
+			window.location = "doAction.php?act=addtocart&pid=" + pid + "&username=" + username + "&num=" + num;
+		}
+
+		function delFromCart(id) {
+			if(window.confirm("你确定要将该美食从你的购物车删除吗？")) {
+				window.location = "doAction.php?act=delfromcart&pid=" + id;
+			}
+		}
+	</script>

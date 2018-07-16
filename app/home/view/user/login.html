@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>传智商城 - 登录</title>
+<link href="/public/home/user.css" rel="stylesheet" />
+<script src="/public/common/jquery.min.js"></script>
+<script src="/public/common/ajaxForm.js"></script>
+<meta name="csrf_token" content="<?=CSRF_TOKEN?>" />
+</head>
+<body>
+<div class="box">
+	<h1>传智商城 - 欢迎登录</h1>
+	<div class="main">
+		<div class="login-ad left"><!--广告位--></div>
+		<form method="post" action="/?c=user&a=loginExec" id="loginForm">
+		<table class="login right">
+			<tr><th>用户名：</th><td><input type="text" name="username" required /></td></tr>
+			<tr><th>密码：</th><td><input type="password" name="password" required /></td></tr>
+			<tr><th>验证码：</th><td><input type="text" name="captcha" required  /></td></tr>
+			<tr><td> </td><td><img src="/?c=user&a=captcha" id="captcha" title="点击刷新验证码"/></td></tr>
+			<tr><td> </td><td><input class="button" type="submit" value="登　录" /></td></tr>
+			<tr><td colspan="2" class="center"><a href="/?c=user&a=register">立即注册</a><a href="/">返回首页</a></td></tr>
+		</table>
+		</form>
+	</div>
+</div>
+<script>
+//验证码点击刷新
+$(function(){
+	var $img = $("#captcha");
+	var src = $img.attr("src")+"&_=";
+	$img.click(function(){
+		$img.attr("src",src+Math.random());
+	});
+});
+//Ajax表单提交
+$("#loginForm").ajaxForm(function(data){
+	//登录失败，刷新验证码
+	data.ok || $("#captcha").click();
+});
+</script>
+</body>
+</html>

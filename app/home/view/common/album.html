@@ -1,0 +1,63 @@
+<?php if($data['goods']['thumb']): ?>
+<link href="/public/home/album/album.css" rel="stylesheet" />
+<div id="preview">
+<div class=jqzoom id="spec-n1">
+	<img width="350" height="350" src="/public/upload/big/<?=$data['goods']['thumb']?>" jqimg="/public/upload/big/<?=$data['goods']['thumb']?>" />
+</div>
+<div id="spec-n5">
+	<div class=control id="spec-left"></div>
+	<div id="spec-list">
+		<ul class="list-h">
+			<li><img src="/public/upload/big/<?=$data['goods']['thumb']?>" /></li>
+			<?php if($data['goods']['album']): foreach(explode('|',$data['goods']['album']) as $v): ?>
+				<li><img src="/public/upload/big/<?=$v?>"></li>
+				<?='--'.$data['goods']['album'].'--'?>
+			<?php endforeach; endif; ?>
+		</ul>
+	</div>
+	<div class=control id="spec-right"></div>
+</div>
+</div>
+<!-- 引入并配置鼠标滑过小图显示大图的插件 -->
+<script src="/public/home/album/jqueryZoom.js"></script>
+<script src="/public/home/album/jqueryMarquee.js"></script>
+<script>
+	$(".jqzoom").jqueryZoom({
+		 xzoom:400,
+		 yzoom:400,
+		 offset:10,
+		 position:"right",
+		 preload:1,
+		 lens:1
+	 });
+	 $("#spec-list").jqueryMarquee({
+		 deriction:"left",
+		 width:350,
+		 height:56,
+		 step:2,
+		 speed:4,
+		 delay:10,
+		 control:true,
+		 _front:"#spec-right",
+		 _back:"#spec-left"
+	 });
+	 $("#spec-list img").bind("mouseover",function(){
+		 var src=$(this).attr("src");
+		 $("#spec-n1 img").eq(0).attr({
+			 src:src.replace("\/n5\/","\/n1\/"),
+			 jqimg:src.replace("\/n5\/","\/n0\/")
+		 });
+		 $(this).css({
+			 "border":"2px solid #ff6600",
+			 "padding":"1px"
+		 });
+	 }).bind("mouseout",function(){
+		 $(this).css({
+			 "border":"1px solid #ccc",
+			 "padding":"2px"
+		 });
+	});
+</script>
+<?php else: ?>
+<img src="/public/home/images/preview2.jpg" />
+<?php endif; ?>

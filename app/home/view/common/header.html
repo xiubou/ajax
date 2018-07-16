@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>
+			<?=$this->title?>
+		</title>
+		<link rel="stylesheet" href="/public/home/style.css" />
+		<script src="/public/common/jquery.min.js"></script>
+		<script src="/public/common/ajaxForm.js"></script>
+		<meta name="csrf_token" content="<?=CSRF_TOKEN?>" />
+	</head>
+
+	<body>
+		<div class="top">
+			<div class="top-nav">
+				<ul>
+					<li>收藏本站</li>
+					<li>关注本站</li>
+				</ul>
+				<ul class="right">
+					<?php if(IS_LOGIN): ?>
+					<li>
+						<?=$this->user['name']?>，欢迎来到传智商城！[
+							<a href="/?c=user&a=logout">退出</a>]
+							<li>
+								<?php else: ?>
+								<li>您好，欢迎来到传智商城！[
+									<a href="/?c=user&a=login">登录</a>][
+									<a href="/?c=user&a=register">免费注册</a>]</li>
+								<?php endif; ?>
+								<li class="line">|</li>
+								<li>
+									<a href="/?c=order">我的订单</a>
+								</li>
+								<li class="line">|</li>
+								<li>
+									<a href="/?c=user">会员中心</a>
+								</li>
+								<li class="line">|</li>
+								<li>
+									<a href="/?c=cart">我的购物车</a>
+								</li>
+								<li class="line">|</li>
+								<li>联系客服</li>
+				</ul>
+			</div>
+		</div>
+		<div class="box">
+			<div class="header">
+				<a class="left" href="/">
+					<div class="logo"></div>
+				</a>
+				<div class="search left">
+					<input type="text" class="left" />
+					<input class="search-btn" type="button" value="搜索" />
+					<p class="search-hot">热门搜索：PHP培训　专业教材　智能手机　平板电脑</p>
+				</div>
+				<div class="info left">
+					<input type="button" value="会员中心" onclick="location.href='?c=user'" />
+					<input type="button" value="去购物车结算" onclick="location.href='?c=cart'" />
+				</div>
+			</div>
+			<div class="nav">
+				<ul>
+					<li id="index_find">
+						<a class="category" href="/?a=find">全部商品分类</a>
+					</li>
+					<li id="index_index">
+						<a href="/">首页</a>
+					</li>
+					<li>
+						<a href="#">特色购物</a>
+					</li>
+					<li>
+						<a href="#">优惠促销</a>
+					</li>
+					<li>
+						<a href="#">限时秒杀</a>
+					</li>
+					<li>
+						<a href="#">品牌专区</a>
+					</li>
+					<li>
+						<a href="#">服务中心</a>
+					</li>
+				</ul>
+			</div>
+		

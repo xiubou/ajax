@@ -1,0 +1,42 @@
+<?php require COMMON_VIEW.'header.html'; ?>
+<?php require COMMON_VIEW.'top.html'; ?>
+<div class="main">
+	<?php require COMMON_VIEW.'menu.html'; ?>
+	<div class="content">
+	<div class="item">
+		<div class="title">商品回收站</div>
+		<div class="top-button">
+			相关操作：<a href="/?p=admin&c=goods&a=index" class="light">商品列表</a>
+		</div>
+		<div class="list full">
+		<table>
+		<tr><th class="t1">商品分类</th><th>商品名称</th><th width="100">库存</th><th width="60">上架</th><th width="60">推荐</th><th width="120">操作</th></tr>
+		<?php foreach($data['goods']['data'] as $v): ?>
+		<tr><td class="t1"><?=$v['category_name'] ? $v['category_name'] : '未分类'?></td><td><?=$v['name']?></td><td><?=$v['stock']?></td>
+		<td><?=($v['on_sale']=='yes')?'是':'否'?></td><td><?=($v['recommend']=='no')?'是':'否'?></td><td>
+		<a href="#" class="act-rec" data-id="<?=$v['id']?>">恢复</a>　<a href="#" class="act-del" data-id="<?=$v['id']?>">删除</a></td></tr>
+		<?php endforeach; ?>
+		</table>
+		</div>
+		<div class="pagelist"><?=$data['goods']['pagelist']?></div>
+	</div>
+	</div>
+</div>
+<script>
+//恢复
+$(".act-rec").ajaxButton("/?p=admin&c=recycle&a=recExec",function(){
+	return {"id":$(this).attr("data-id")};
+},function(data){
+	data.ok && location.reload(); //完成后刷新
+});
+//彻底删除
+$(".act-del").ajaxButton("/?p=admin&c=recycle&a=delExec",function(){
+	if(!confirm('确定要彻底删除吗？')){
+		return false;
+	}
+	return {"id":$(this).attr("data-id")};
+},function(data){
+	data.ok && location.reload(); //完成后刷新
+});
+</script>
+<?php require COMMON_VIEW.'footer.html'; ?>

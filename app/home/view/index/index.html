@@ -1,0 +1,26 @@
+<?php require COMMON_VIEW.'header.html' ?>
+<!--分类左栏-->
+<?php require COMMON_VIEW.'slide.html' ?>
+<!--热点图-->
+<?php require COMMON_VIEW.'hot.html' ?>
+<!--新闻列表-->
+<div class="news right">最新动态</div>
+<div class="clear"></div>
+<!--推荐商品-->
+<div class="best">
+	<div class="best-title">精品推荐</div>
+	<?php foreach($data['best'] as $v): ?>
+	<ul class="item left">
+		<li><a href="/?a=goods&id=<?=$v['id']?>" target="_blank">
+		<?php if(empty($v['thumb'])):?>
+		<img src="/public/home/images/preview.jpg">
+		<?php else: ?>
+		<img src="/public/upload/small/<?=$v['thumb']?>">
+		<?php endif; ?>
+		</a></li>
+		<li class="goods"><a href="/?a=goods&id=<?=$v['id']?>" target="_blank"><?=$v['name']?></a></li>
+		<li class="price">￥<?=$v['price']?></li>
+	</ul>
+	<?php endforeach ?>
+</div>
+<?php require COMMON_VIEW.'footer.html'; ?>

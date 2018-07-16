@@ -1,0 +1,58 @@
+<?php require COMMON_VIEW.'header.html'; ?>
+<?php require COMMON_VIEW.'top.html'; ?>
+<div class="main">
+	<?php require COMMON_VIEW.'menu.html'; ?>
+	<div class="content">
+	<div class="item">
+		<div class="title">商品列表</div>
+		<div class="top-button">
+		选择商品分类：<select id="category">
+		<option value="-1" <?php if($cid==-1){ echo 'selected'; } ?>>全部</option>
+		<option value="0" <?php if($cid==0){ echo 'selected'; } ?>>未分类</option>
+		<?php foreach($data['category'] as $v){
+			echo '<option value="'.$v['id'].'" ';
+			if($v['id']==$cid){ echo 'selected'; }
+			echo '>'.str_repeat('— ',$v['level']).$v['name'].'</option>';
+		} ?>
+		</select>
+		<a href="/?p=admin&c=goods&a=add" class="light">添加商品</a>
+		<a href="/?p=admin&c=category&a=add">添加分类</a>
+		</div>
+	<div class="list full">
+		<table>
+			<tr><th class="t1">商品分类</th><th>商品名称</th><th width="100">库存</th><th width="60">上架</th><th width="60">推荐</th><th width="120">操作</th></tr>
+			<?php foreach($data['goods']['data'] as $v): ?>
+				<tr><td class="t1"><a href="/?p=admin&c=goods&cid=<?=$v['category_id']?>">
+				<?=$v['category_name'] ? $v['category_name'] : '未分类'?></a></td>
+				<td><?=$v['name']?></td>
+				<td><?=$v['stock']?></td>
+				<td><a href="#" class="act" data-name="on_sale" data-id="<?=$v['id']?>" data-status="<?=$v['on_sale']?>"><?=($v['on_sale']=='yes')?'是':'否'?></a></td>
+				<td><a href="#" class="act" data-name="recommend" data-id="<?=$v['id']?>" data-status="<?=$v['recommend']?>"><?=($v['recommend']=='yes')?'是':'否'?></a></td><td>
+					<a href="/?p=admin&c=goods&a=edit&id=<?=$v['id']?>&cid=<?=$v['category_id']?>&page=<?=$page?>">修改</a>　<a href="#" class="act" data-name="recycle" data-id="<?=$v['id']?>">删除</a></td>
+				</tr>
+			<?php endforeach; ?>
+		</table>
+	</div>
+	<div class="pagelist"><?=$data['goods']['pagelist']?></div>
+	</div>
+	</div>
+</div>
+<script>
+//下拉菜单跳转
+$("#category").change(function(){
+	location.href = "/?p=admin&c=goods&a=index&cid="+$(this).val();
+});
+//修改字段
+$(".act").ajaxButton("/?p=admin&c=goods&a=changeExec",function(){
+	var id = $(this).attr("data-id");
+	var name = $(this).attr("data-name");
+	var value = $(this).attr("data-status")==="yes"?"no":"yes";
+	if(name==="recycle" && !confirm('您确定将该商品删除到回收站吗？')){
+		return false;
+	}
+	return {"id":id,"name":name,"value":value};
+},function(data){
+	data.ok && location.reload(); //完成后刷新
+});
+</script>
+<?php require COMMON_VIEW.'footer.html'; ?>

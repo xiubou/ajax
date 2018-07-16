@@ -1,0 +1,37 @@
+<?php require COMMON_VIEW.'header.html'; ?>
+<?php require COMMON_VIEW.'top.html'; ?>
+<div class="main">
+	<?php require COMMON_VIEW.'menu.html'; ?>
+	<div class="content">
+	<div class="item">
+		<div class="title">商品分类</div>
+		<div class="top-button">
+			相关操作：<a href="/?p=admin&c=category&a=add" class="light">添加分类</a>
+		</div>
+		<div class="list full auto">
+			<table id="category"><tr><th>分类名称</th><th>操作</th></tr>
+			<?php foreach($data as $v){
+				echo '<tr><td>'.str_repeat('— ',$v['level']).$v['name'].'</td>';
+				echo '<td><a href="/?p=admin&c=category&a=edit&id='.$v['id'].'">修改</a>　';
+				echo '<a href="#" class="act-del" data-id="'.$v['id'].'" >删除</a></td></tr>';
+			} ?>
+			</table>
+		</div>
+	</div>
+	</div>
+</div>
+<script>
+$(".act-del").ajaxButton("/?p=admin&c=category&a=delExec",
+	//前置函数，提示确认信息
+	function(){
+		if (!confirm("您确定删除这条分类？")) {return false;}
+		//确认后，返回要提交的数据
+		return {"id":$(this).attr("data-id")};
+	},
+	//后置函数，执行后续操作
+	function(data){
+		data.ok && location.reload(); //成功后刷新
+	}
+);
+</script>
+<?php require COMMON_VIEW.'footer.html'; ?>

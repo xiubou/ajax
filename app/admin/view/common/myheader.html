@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="../../assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title></title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+     <!-- Canonical SEO -->
+    <link rel="canonical" href="https://www.creative-tim.com/product/light-bootstrap-dashboard-pro"/>
+    <!-- Bootstrap core CSS     -->
+    <link href="/public/admin/main/css/bootstrap.min.css" rel="stylesheet" />
+    <!--  Light Bootstrap Dashboard core CSS    -->
+    <link href="/public/admin/main/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="/public/admin/main/css/demo.css" rel="stylesheet" />
+    <!--     Fonts and icons     -->
+    <link href="/public/admin/main/css/font-awesome.min.css" rel="stylesheet">
+    <link href='/public/admin/main/css/685fd913f1e14aebad0cc9d3713ee469.css' rel='stylesheet' type='text/css'>
+    <link href="/public/admin/main/css/pe-icon-7-stroke.css" rel="stylesheet" />
+	<script src="/public/common/jquery.min.js"></script>
+	<script src="/public/common/ajaxForm.js"></script>
+	<meta name="csrf_token" content="<?=CSRF_TOKEN?>" />
+</head>
+
+<style>
+	.mytd{
+		padding-left: 30px !important;
+		
+	}
+	.mytdd{
+		font-size: 16px;
+	}
+
+</style>
+<body>
+	<div class="wrapper">
+    <div class="sidebar" data-color="orange" data-image="../../assets/img/full-screen-image-3.jpg">
+        <!--
+
+            Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+            Tip 2: you can also add an image using data-image tag
+
+        -->
+
+        <div class="logo">
+            <a href=""#" class="logo-text">
+                -食藏者-
+            </a>
+        </div>
+		<!--<div class="logo logo-mini">
+			<a href=""#" class="logo-text">
+				Ct
+			</a>
+		</div>-->
+
+    	<div class="sidebar-wrapper">
+
+            <div class="user">
+                <div class="photo">
+                    <img src="/public/admin/main/picture/zuotu.jpg" />
+                </div>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="/?p=admin&c=index&a=myindex">
+                        <i class="pe-7s-cloud"></i>
+                        <p>主页</p>
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="collapse" href="#componentsExamples">
+                        <i class="pe-7s-calculator"></i>
+                        <p>用户管理
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="componentsExamples">
+                        <ul class="nav">
+                            <li><a href="/?p=admin&c=user&a=adduser">添加用户</a></li>
+                            <li><a href="/?p=admin&c=user&a=myindex">用户列表</a></li>
+						</ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#formsExamples">
+                        <i class="pe-7s-pen"></i>
+                        <p>管理员管理
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="formsExamples">
+                        <ul class="nav">
+                            <li><a href="/?p=admin&c=user&a=addadmin">添加管理员</a></li>
+                            <li><a href="/?p=admin&c=user&a=listadmin">管理员列表</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#tablesExamples">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>分类管理
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="tablesExamples">
+                        <ul class="nav">
+                            <li><a href="/?p=admin&c=category&a=myadd">添加分类</a></li>
+                            <li><a href="/?p=admin&c=category&a=myindex">分类列表</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#mapsExamples">
+                        <i class="pe-7s-coffee"></i>
+                        <p>食物管理
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="mapsExamples">
+                        <ul class="nav">
+                            <li><a href="/?p=admin&c=goods&a=myadd">新增美食</a></li>
+                            <li><a href="/?p=admin&c=goods&a=myindex">美食列表</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="/?p=admin&c=order&a=index">
+                        <i class="pe-7s-drawer"></i>
+                        <p>订单管理</p>
+                    </a>
+                </li>
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+				<div class="navbar-minimize">
+					<button id="minimizeSidebar" class="btn btn-warning btn-fill btn-round btn-icon">
+						<i class="fa fa-ellipsis-v visible-on-sidebar-regular"></i>
+						<i class="fa fa-navicon visible-on-sidebar-mini"></i>
+					</button>
+				</div>
+                <div class="navbar-header">
+                    <button type="button " class="navbar-toggle " data-toggle="collapse ">
+						<span class="sr-only ">Toggle navigation</span>
+						<span class="icon-bar "></span>
+						<span class="icon-bar "></span>
+						<span class="icon-bar "></span>
+					</button>
+					<a class="navbar-brand " href="# ">L.W.W&C.Y.C</a>
+                </div>
+                <div class="collapse navbar-collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="dropdown">
+                            <a>
+                                <i class="fa fa-gavel"></i>
+                            </a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a> <i class="fa fa-bell-o"></i></a>
+                        </li>
+
+                        <li class="dropdown dropdown-with-icons">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-list"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-with-icons">
+                                <li>
+                                    <a href="lock.html">
+                                        <i class="pe-7s-lock"></i> Lock Screen
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-danger">
+                                        <i class="pe-7s-close-circle"></i>
+                                        Log out
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>

@@ -1,0 +1,58 @@
+<?php require COMMON_VIEW.'header.html'; ?>
+<?php require COMMON_VIEW.'top.html'; ?>
+<div class="main">
+	<?php require COMMON_VIEW.'menu.html'; ?>
+	<div class="content">
+	<div class="item">
+		<div class="title">商品添加</div>
+		<div class="top-button">相关操作：<a href="/?p=admin&c=goods&a=index" class="light">商品列表</a><a href="/?p=admin&c=category&a=add">添加分类</a></div>
+		<?php if($tip): ?><div class="mssage">添加成功。（<a href="/?p=admin&c=goods&a=edit&id=<?=I('id','get','id')?>">点击修改</a>）</div><?php endif; ?>
+		<div class="list auto">
+		<form method="post" action="/?p=admin&c=goods&a=addExec" id="goods">
+			<div class="tab"><i class="curr">商品信息</i><i>商品相册</i><i>商品详情</i></div>
+			<!--商品信息-->
+			<table class="t2 t4 tab-each">
+				<tr><th>商品分类：</th><td><select name="category_id">
+					<option value="0">未选择</option>
+					<?php foreach($data['category'] as $v){
+						echo '<option value="'.$v['id'].'">'.str_repeat('— ',$v['level']).$v['name'].'</option>';
+					} ?>
+				</select></td></tr>
+				<tr><th>商品名称：</th><td><input type="text" name="name" class="big"></td></tr>
+				<tr><th>商品编号：</th><td><input type="text" name="sn" ></td></tr>
+				<tr><th>商品价格：</th><td><input type="text" name="price" class="small"></td></tr>
+				<tr><th>商品库存：</th><td><input type="text" name="stock" class="small"></td></tr>
+				<tr><th>是否上架：</th><td><select name="on_sale"><option value="yes" selected>是</option><option value="no">否</option></select></td></tr>
+				<tr><th>首页推荐：</th><td><select name="recommend"><option value="yes">是</option><option value="no" selected>否</option></select></td></tr>
+			</table>
+			<!--商品相册-->
+			<div class="album tab-each">
+				<?php require COMMON_VIEW.'album.html' ?>
+			</div>
+			<!--商品详情-->
+			<div class="editor tab-each">
+				<?php require COMMON_VIEW.'editor.html'; ?>
+				<script type="text/plain" id="myEditor" name="desc"><p>请在此处输入商品详情。</p></script>
+			</div>
+			<div class="btn">
+				<input type="submit" value="添加商品" />
+				<input type="submit" value="添加并返回" name="return" />
+			</div>
+		</form>
+		</div>
+	</div>
+	</div>
+</div>
+<script>
+$(".tab-each:first").show(); //默认显示第1个
+//TAB切换
+$(".tab i").click(function(){
+	$(".tab-each").hide();
+	$(".tab-each").eq($(this).index()).show();
+	$(".tab i").removeClass("curr");
+	$(this).addClass("curr");
+});
+//Ajax提交表单
+$("#goods").ajaxForm();
+</script>
+<?php require COMMON_VIEW.'footer.html'; ?>

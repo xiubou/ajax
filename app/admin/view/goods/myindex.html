@@ -1,0 +1,177 @@
+<?php require COMMON_VIEW.'myheader.html'; ?>
+<style>
+		.mylistpro {
+			margin-left: 15px;
+		}
+		
+		@media (max-width: 767px) {
+			.mylistpro {
+				margin-left: 0px;
+			}
+		}
+		.form-group{
+			width:31.2%;
+		}
+	</style>
+<div class="col-md-12 mylistpro " style="margin-top: 10px; ">
+	<div class="row ">
+		<div class="col-md-2 ">
+			<p class="navbar-brand ">价格</p>
+			<select name="cities " class="selectpicker " data-title="请选择 " data-style="btn-default btn-block " data-menu-style="dropdown-blue ">
+				<option value="mPrice asc ">由低到高</option>
+				<option value="mPrice desc ">由高到低</option>
+			</select>
+		</div>
+
+		<div class="col-md-2 ">
+			<p class="navbar-brand ">上架时间</p>
+			<select multiple data-title="请选择 " name="currency " class="selectpicker " data-style="btn-info btn-fill btn-block " data-menu-style="dropdown-blue ">
+				<option value="pubTime desc ">最新发布</option>
+				<option value="pubTime asc ">历史发布</option>
+			</select>
+		</div>
+		<div class="col-md-2 ">
+			<p class="navbar-brand " >选择商品分类</p>
+			<select id="category" class="selectpicker " data-title="请选择 " data-style="btn-default btn-block " data-menu-style="dropdown-blue ">
+				<option value="-1" <?php if($cid==-1){ echo 'selected'; } ?>>全部</option>
+				<option value="0" <?php if($cid==0){ echo 'selected'; } ?>>未分类</option>
+				<?php foreach($data['category'] as $v){
+					echo '<option value="'.$v['id'].'" ';
+					if($v['id']==$cid){ echo 'selected'; }
+					echo '>'.str_repeat('~ ',$v['level']).$v['name'].'</option>';
+				} ?>
+			</select>
+		</div>
+		<div class="form-group col-md-4 ">
+			<p class="navbar-brand ">搜索</p>
+			<input type="text " id="search " onkeypress="search() " class="form-control ">
+		</div>
+	</div>
+</div>
+
+<div class="content ">
+	<div class="container-fluid ">
+		<div class="row ">
+			<div class="col-md-10 ">
+				<div class="card ">
+					<div class="header ">
+						<h4 class="title ">美食列表</h4>
+					</div>
+					<div class="content table-responsive table-full-width ">
+						<table class="table ">
+							<thead>
+								<tr>
+									<th class="text-center ">#</th>
+									<th>名称</th>
+									<th>主类别</th>
+									<th>库存</th>
+									<th>是否上架</th>
+									<th>上架时间</th>
+									<th class="text-center ">价格</th>
+									<th class="text-center ">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+<?php foreach($data['goods']['data'] as $v): ?>
+			<tr>
+				<td><?=$v['id']?></td>
+				<td><?=$v['name']?></td>
+				<td class="t1"><a href="/?p=admin&c=goods&cid=<?=$v['category_id']?>">
+				<?=$v['category_name'] ? $v['category_name'] : '未分类'?></a></td>
+				<td><?=$v['stock']?></td>
+				<td><a href="#" class="act" data-name="on_sale" data-id="<?=$v['id']?>" data-status="<?=$v['on_sale']?>"><?=($v['on_sale']=='yes')?'是':'否'?></a></td>
+				<td><?=$v['add_time']?></td>
+				<td><?=$v['price']?></td>
+									<td class="td-actions text-center">
+										<a href="#" rel="tooltip" title="详情" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#myModal<?=$v['id']?>">
+											<i class="fa fa-list-ul"></i>
+										</a>
+										<div class="modal fade" id="myModal<?=$v['id']?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+											<div class="modal-dialog" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+														<h4 style="background-color: #f37916e0;height: 50px;color: white;line-height:  50px;" class="modal-title" id="myModalLabel"><?=$v['name']?></=?></h4>
+													</div>
+													<div class="modal-body">
+														<table class="table ">
+															<tbody>
+
+																<tr>
+																	<td width="20%" align="right">名称</td>
+																	<td><?=$v['name']?></td>
+																</tr>
+																<tr>
+																	<td width="20%" align="right">类别</td>
+																	<td><a href="/?p=admin&c=goods&cid=<?=$v['category_id']?>">
+				<?=$v['category_name'] ? $v['category_name'] : '未分类'?></a></td>
+																</tr>
+																<tr>
+																	<td width="20%" align="right">库存</td>
+																	<td><?=$v['stock']?></td>
+																</tr>
+																<tr>
+																	<td width="20%" align="right">价格</td>
+																	<td><?=$v['price']?></td>
+																</tr>
+																<tr>
+																	<td width="20%" align="right">图片</td>
+																	<td>
+																		<img width="100" height="100" src="<?=$v['name']?>" alt=""> &nbsp;&nbsp;
+																	</td>
+																</tr>
+																<tr>
+																	<td width="20%" align="right">是否上架</td>
+																	<td><?=($v['on_sale']=='yes')?'是':'否'?> </td>
+																</tr>
+																<tr>
+																	<td width="20%" align="right">描述</td>
+																	<td><?=$v['desc']?></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<a href="/?p=admin&c=goods&a=edit&id=<?=$v['id']?>&cid=<?=$v['category_id']?>&page=<?=$page?>"" rel="tooltip" title="编辑" class="btn btn-success btn-simple btn-xs">
+											<i class="fa fa-edit"></i>
+										</a>
+										<a href="#" class="act btn btn-danger btn-simple btn-xs" data-name="recycle" data-id="<?=$v['id']?>" rel="tooltip" title="删除" >
+											<i class="fa fa-times"></i>
+										</a>
+									</td>
+			</tr>
+			<?php endforeach;?>	
+							</tbody>
+						</table>
+					
+						<a href="addPro.html"><button type="submit " class="btn btn-info btn-fill center-block " style="margin-top: 15px; ">添加</button></a>
+						<div class="pagelist"><?=$data['goods']['pagelist']?></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<script>
+//下拉菜单跳转
+$("#category").change(function(){
+	location.href = "/?p=admin&c=goods&a=index&cid="+$(this).val();
+});
+//修改字段
+$(".act").ajaxButton("/?p=admin&c=goods&a=changeExec",function(){
+	var id = $(this).attr("data-id");
+	var name = $(this).attr("data-name");
+	var value = $(this).attr("data-status")==="yes"?"no":"yes";
+	if(name==="recycle" && !confirm('您确定将该商品删除到回收站吗？')){
+		return false;
+	}
+	return {"id":id,"name":name,"value":value};
+},function(data){
+	data.ok && location.reload(); //完成后刷新
+});
+</script>
+<?php require COMMON_VIEW.'myfooter.html'; ?>

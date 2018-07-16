@@ -1,0 +1,78 @@
+<?php require COMMON_VIEW.'header.html' ?>
+<div class="goodsinfo">
+	<div class="now_cat">当前位置：
+		<!--分类-->
+		<?php foreach($data['path'] as $v): ?>  
+			<a href="/?a=find&cid=<?=$v['id']?>"><?=$v['name']?></a> &gt;
+		<?php endforeach; ?>
+		<?=$data['goods']['name']?>
+	</div>
+	<div class="pic left">
+		<?php require COMMON_VIEW.'album.html'; ?>
+	</div>
+	<div class="info left"><h1><?=$data['goods']['name']?></h1><table>
+		<tr><th>售 价：</th><td><span class="price">￥<?=$data['goods']['price']?></span></td></tr>
+		<tr><th>商品编号：</th><td><?=$data['goods']['sn']?></td></tr>
+		<tr><th>累计销量：</th><td>1000</td></tr>
+		<tr><th>评 价：</th><td>1000</td></tr>
+		<tr><th>配送至：</th><td>北京（免运费）</td></tr>
+		<tr><th>购买数量：</th><td>
+			<input type="button" value="-" class="cnt-btn" />
+			<input type="text" value="1" id="num" class="num-btn" />
+			<input type="button" value="+" class="cnt-btn" />（库存：<?=$data['goods']['stock']?>）</td></tr>
+		<tr><td colspan="2" class="button"><a href="#" class="light" id="buy">立即购买</a><a href="#" id="addCart">加入购物车</a></td></tr>
+		</table></div>
+	<div class="line"></div>
+	<div class="goods-slide left"><div class="title">相关商品推荐</div>
+		<?php foreach($data['recommend'] as $v): ?>
+		<ul class="item left">
+			<li><a href="/?a=goods&id=<?=$v['id']?>" target="_blank">
+				<?php if($v['thumb']): ?>
+					<img src="/public/upload/small/<?=$v['thumb']?>" />
+				<?php else: ?>
+					<img src="/public/home/images/preview.jpg" />
+				<?php endif; ?>
+			</a></li>
+			<li class="goods"><a href="/?a=goods&id=<?=$v['id']?>" target="_blank"><?=$v['name']?></a></li>
+			<li class="price">￥<?=$v['price']?></li>
+		</ul>
+		<?php endforeach; ?>
+	</div>
+	<div class="desc left"><div class="title">商品详情</div><div class="content"><?=$data['goods']['desc']?></div></div>
+</div>
+<script>
+(function(){
+	var $num = $("#num");
+	var id = <?=$data['goods']['id']?>;
+	var stock = <?=$data['goods']['stock']?>;
+	//购买数量加减
+	$(".cnt-btn").click(function(){
+		var num = parseInt($num.val());
+		if ($(this).val() === '-') {
+			if ( num=== 1) return;
+			$num.val(num-1);
+		}else if ($(this).val() === '+') {
+			if (num === stock) return;
+			$num.val(num+1);
+		}
+	});
+	//自动纠正购买数量
+	$num.keyup(function(){
+		var num = parseInt($(this).val());
+		if(num<1){
+			$(this).val(1);
+		}else if(num > stock){
+			$(this).val(stock);
+		}
+	});
+	//添加购物车
+	$("#addCart").ajaxButton("/?c=cart&a=addExec",function(){
+		return {"id":id,"num":$num.val()};
+	});
+	//购买（下订单）
+	$("#buy").ajaxButton("/?c=order&a=addExec",function(){
+		return {"buy":[{"id":id,"num":$num.val()}]};
+	});
+})();
+</script>
+<?php require COMMON_VIEW.'footer.html'; ?>

@@ -1,0 +1,51 @@
+<?php require COMMON_VIEW.'myheader.html'; ?>
+
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-10">
+				<a href="/?p=admin&c=category&a=add"><button type="submit" class="btn btn-info btn-fill" style="margin-top: -10px;margin-bottom: 10px;">添加</button></a>
+				<div class="card">
+					<div class="header">
+						<h4 class="title">分类列表</h4>
+					</div>
+					<div class="content table-responsive table-full-width">
+						
+						<table class="table">
+							<thead>
+								<tr>
+									<th width="30%">分类</th>
+									<th class="text-center">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+						<?php foreach($data as $v){
+							echo '<tr><td>'.str_repeat(' .— ',$v['level']).$v['name'].'</td>';
+							echo '<td class="td-actions text-center"><a href="/?p=admin&c=category&a=edit&id='.$v['id'].'" rel="tooltip" title="编辑" class="btn btn-success btn-simple btn-xs"><i class="fa fa-edit"></i></a>　';
+							echo '<a href="#" data-id="'.$v['id'].'" rel="tooltip" title="删除" class="act-del btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td></tr>';
+						} ?>
+							</tbody>
+						</table>
+						<!--<div class="pagelist"><?=$data['category']['pagelist']?></div>-->
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<script>
+$(".act-del").ajaxButton("/?p=admin&c=category&a=delExec",
+	//前置函数，提示确认信息
+	function(){
+		if (!confirm("您确定删除这条分类？")) {return false;}
+		//确认后，返回要提交的数据
+		return {"id":$(this).attr("data-id")};
+	},
+	//后置函数，执行后续操作
+	function(data){
+		data.ok && location.reload(); //成功后刷新
+	}
+);
+</script>
+<?php require COMMON_VIEW.'myfooter.html'; ?>

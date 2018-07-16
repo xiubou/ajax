@@ -1,0 +1,314 @@
+<?php require COMMON_VIEW.'myheader.html' ?>
+	
+<link href="/public/common/main/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="/public/common/main/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="/public/common/main/css/style.css" rel="stylesheet">
+		<link href="/public/common/main/css/stylesheet.css" rel="stylesheet">
+
+		<script src="/public/common/main/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+		<script src="/public/common/main/js/common.js" type="text/javascript"></script>
+		<script src="/public/common/main/js/bootstrap.min.js" type="text/javascript"></script>
+
+		<style>
+			#foot p {
+				line-height: 24px;
+				margin: 0;
+				padding: 2px;
+			}
+			table,th,td{
+				text-align: center;
+			}
+			.disp {
+			    display: block;
+			    width: 200px;
+			    margin: 0;
+			    text-align: center;
+			    border-bottom: 1px solid #ddd !important;
+			}
+			.propage{
+				clear: both;
+				width: 100%;
+				padding-top: 15px;
+				/*background: #00BAC6;*/
+				margin-left: 20px;
+				text-align: center;
+				font-size:16px ;
+				border-top: solid 2px #C41D4A;
+			}
+			
+		</style>
+
+		<style>
+			.agileinfo_single {
+				padding: 5em 3em;
+				width: 80%;
+			}
+			
+			.agileinfo_single h5 {
+				font-size: 1.8em;
+				color: #212121;
+				line-height: 1.5em;
+				text-transform: uppercase;
+				margin-bottom: 2em;
+			}
+			
+			.agileinfo_single_left {
+				height: 330px;
+				padding: 0.4em;
+				margin-top: 20px;
+				margin-left: 5px;
+				margin-right: 10px;
+				box-shadow: 0px 0px 5px #E1E1E1;
+			}
+			
+			@media (max-width: 1280px) {
+				.agileinfo_single_right {
+					padding-left: 3em;
+				}
+				.snipcart-details {
+					width: 88%;
+				}
+			}
+			
+			@media (max-width: 991px) {
+				.agileinfo_single {
+					padding: 4em 3em;
+				}
+				.agileinfo_single h5 {
+					font-size: 1.5em;
+				}
+				.agileinfo_single_left {
+					width: 100%;
+					margin: 0.9em auto 0;
+				}
+				.snipcart-details {
+					width: 70%;
+				}
+			}
+			
+			@media (max-width: 800px) {
+				.agileinfo_single {
+					padding: 3em 2em;
+				}
+				.agileinfo_single h5 {
+					font-size: 1.3em;
+				}
+				.agileinfo_single_left {
+					width: 92%;
+				}
+			}
+			
+			@media (max-width: 414px) {
+				.agileinfo_single h5 {
+					font-size: 1.2em;
+				}
+			}
+			
+			@media (max-width: 382px) {
+				.agileinfo_single h5 {
+					font-size: 1em;
+				}
+			}
+			
+			@media (max-width: 320px) {
+				.agileinfo_single_left {
+					width: 90%;
+				}
+				.agileinfo_single_right {
+					padding: 0;
+				}
+				.w3agile_description p {
+					font-size: 13px;
+					width: 100%;
+				}
+				.w3agile_description {
+					margin: 2em 0 1em;
+				}
+			}
+			
+			.agileinfo_single_right {
+				padding-left: 5em;
+			}
+			/*-- Ratings --*/
+			
+			.rating1 {
+				direction: ltr;
+			}
+			
+			.starRating:not(old) {
+				display: inline-block;
+				height: 17px;
+				width: 100px;
+				overflow: hidden;
+			}
+			
+			.starRating:not(old)>input {
+				margin-right: -26%;
+				opacity: 0;
+			}
+			
+			.starRating:not(old)>label:hover:before,
+			.starRating:not(old)>label:hover~label:before,
+			.starRating:not(:hover)> :checked~label:before {
+				opacity: 1;
+			}
+			
+			.w3agile_description h4 {
+				font-size: 1em;
+				color: #212121;
+				text-transform: uppercase;
+			}
+			
+			.w3agile_description p {
+				font-size: 14px;
+				color: #999;
+				line-height: 2em;
+				margin: .5em 0 0;
+				width: 80%;
+			}
+			
+			.w3agile_description {
+				margin: 2em 0;
+			}
+			
+			.snipcart-details {
+				text-align: center;
+				margin: 1.5em auto 1em;
+				width: 77%;
+			}
+			
+			@media (max-width:1680px) {
+				.snipcart-details {
+					width: 76%;
+				}
+			}
+			
+			@media (max-width:1600px) {
+				.snipcart-details {
+					width: 77%;
+				}
+			}
+			
+			@media (max-width:1440px) {
+				.snipcart-details {
+					width: 93%;
+				}
+			}
+			
+			@media (max-width:1080px) {
+				.snipcart-details {
+					width: 80%;
+				}
+			}
+			
+			#example {
+				width: 100%;
+				height: 100%;
+				margin: 0 auto;
+			}
+		</style>
+<?php require COMMON_VIEW.'top.html' ?>
+<?php require COMMON_VIEW.'menudefault.html' ?>
+		<div class="container">
+			<div class="row">
+				<?php require COMMON_VIEW.'aside.html' ?>
+				<div id="content" class="col-lg-9 col-md-12 col-sm-12 hidden-xs">
+					<div class="row">
+							<table class="table" cellspacing="0" cellpadding="0" style="margin:20px 0 0 20px;">
+								<thead>
+									<tr>
+										<th width="5%" ></th>
+										<th width="10%">美食</th>
+										<th width="10%">所属主类</th>
+										<th width="5%" >数量</th>
+										<th width="15%">图片</th>
+										<th width="10%">单价</th>
+										<th width="10%">总价</th>
+										<th width="20%" colspan="2">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr style="height: 70px;line-height: 70px;vertical-align: middle;">
+										<td style="line-height:70px ;">
+											<input type="checkbox" id="3" class="check">
+											<label for="3" class="label"></label>
+										</td>
+										<td>印尼炒饭</td>
+										<td>异国料理</td>
+										<td>1个</td>
+										<td><img src='/public/common/image_320/58c4d116a44068979bd58f8432b9edd5.jpg' style="width:70px;height: auto;" /></td>
+										<td>34.00元</td>
+										<td>34.00元</td>
+										<td align="center">
+											<input type="button" value="详情" class="cartbutton" onclick="showDetail(44)">
+											<input type="button" value="删除" class="cartbutton" onclick="delFromCart(44)">
+										</td>
+									</tr>
+									<tr style="height: 70px;line-height: 70px;vertical-align: middle;">
+										<td style="line-height:70px ;">
+											<input type="checkbox" id="3" class="check">
+											<label for="3" class="label"></label>
+										</td>
+										<td>印尼炒饭</td>
+										<td>异国料理</td>
+										<td>1个</td>
+										<td><img src='/public/common/image_320/3923ec90db43eedab0928266c3043033.jpg' style="width:70px;height: auto;" /></td>
+										<td>34.00元</td>
+										<td>34.00元</td>
+										<td align="center">
+											<input type="button" value="详情" class="cartbutton" onclick="showDetail(44)">
+											<input type="button" value="删除" class="cartbutton" onclick="delFromCart(44)">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="sum"><span>总和：34.00元</span>
+								<input type="button" value="结算咯" class="cartbutton checkout" onclick="sendOrder()">
+							</div>
+					</div>
+				</div>
+				
+				<!-----------购物车缩小时显示--><!--hidden-lg hidden-md----------->
+				<div id="content" class="col-lg-9 col-md-12 col-sm-12 hidden-lg hidden-md">
+					<!--购物车sigle-->
+					<div class="row">
+						<div class="col-sm-6 col-xs-6">
+							<img src='/public/common/image_320/58c4d116a44068979bd58f8432b9edd5.jpg' style="width:100%;height: auto;margin:10px 0" />
+						</div>
+						<div class="col-sm-6  col-xs-6">
+							<div class="row">
+								<div class="col-sm-12 col-xs-12"><h1>Testname</h1></div>
+								<div class="col-sm-12 col-xs-12 desc">TestDesc</div>
+								<div class="col-sm-12 col-xs-12 num">TestNum 个</div>
+								<div class="col-sm-12 col-xs-12 price">￥TestPrice</div>
+							</div>
+						</div>
+					</div>
+					<!--购物车sigle-->
+					<div class="row">
+						<div class="col-sm-6 col-xs-6">
+							<img src='/public/common/image_320/3923ec90db43eedab0928266c3043033.jpg' style="width:100%;height: auto;margin:10px 0" />
+						</div>
+						<div class="col-sm-6  col-xs-6">
+							<div class="row">
+								<div class="col-sm-12 col-xs-12"><h1>Testname</h1></div>
+								<div class="col-sm-12 col-xs-12 desc">TestDesc</div>
+								<div class="col-sm-12 col-xs-12 num">TestNum 个</div>
+								<div class="col-sm-12 col-xs-12 price">￥TestPrice</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<div class="sum">总和：34.00元
+							<input type="button" value="结算咯" class="cartbutton checkout" onclick="sendOrder()">
+							</div>
+						</div>
+					</div>
+				</div>
+			<!--缩小时显示部分结束-->
+			</div>	
+			<!--右边显示row结束-->
+		</div>
+<?php require COMMON_VIEW.'myfooter.html' ?>
+</html>

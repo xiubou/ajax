@@ -1,0 +1,123 @@
+</head>
+<body class="">
+		<nav id="top">
+			<div class="container">
+				<div id="top-links" class="nav pull-right">
+					<ul class="list-inline">
+						<?php if(IS_LOGIN): ?>	
+						<span style="color: white;">欢&nbsp;迎&nbsp;"&nbsp;&nbsp;<?=$this->user['name']?>&nbsp;&nbsp;"</span>
+						<li class="hidden-xs">
+							<a href="/?c=user&a=logout">
+								<span>退出</span>
+							</a>
+						</li>
+						<?php else: ?>
+						<li>
+							<a href="/?c=user&a=go"><span>登录</span></a>
+						</li>
+						<li>
+							<a href="/?c=user&a=go"><span>注册</span></a>
+						</li>
+<?php endif; ?>
+						<li class="hidden-xs">
+							<a href="iframe.php?a=contact.php">
+								<i class="fa fa-phone"></i>
+								<span class="hidden-xs hidden-sm">L.W.W&C.Y.C</span>
+							</a>
+						</li>
+						<li class="hidden-xs">
+							<a href="" id="wishlist-total" title="收藏">
+								<i class="fa fa-heart"></i>
+								<span class="hidden-xs hidden-sm">收藏</span>
+							</a>
+						</li>
+						<li>
+							<a class="cart-sty" href="cart.php" title="购物车">
+								<i class="fa fa-shopping-cart"></i>
+								<span class="hidden-xs hidden-sm hidden-md">购物车</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		
+		<header class="main-header">
+			<div class="container-fluid rel-div">
+				<div class="col-lg-3 col-sm-4">
+					<div class="main-logo">
+						
+						<a class="a_logo" href="/?a=myindex" title="Our_Logo">
+							<strong style="z-index: 2;">食</strong>
+							<span class="medium-font" style="z-index: 2;">藏者Er</span>
+							<img class="imglogo" src="/public/common/main/imgs/ourlogo3.png" />
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-3">
+					<div id="search" class="input-group">
+						<input type="text" name="search" value="" placeholder="请输入搜索关键词..." class="form-control">
+						<span class="input-group-btn">
+	        					<button type="button" class="btn btn-primary">搜索</button>
+	      					</span>
+					</div>
+				</div>
+				<div class="col-lg-4 responsive-menu">
+					<div class="responsive-toggle fa fa-bars"> </div>
+					<nav class="fix-navbar" id="primary-navigation">
+						<ul class="primary-navbar">
+							<li>
+								<a href="/?c=user&a=go"> 首页 </a>
+							</li>
+							<li>
+								<a href="/?c=user&a=logou"> 注销 </a>
+							</li>
+							<li>
+								<a href="/?c=order&a=myindex"> 订单中心 </a>
+							</li>
+							<li>
+								<a href="iframe.php?a=about.php"> 关于我们 </a>
+							</li>
+							<li>
+								<a href="iframe.php?a=contact.php"> 联系我们 </a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-lg-2 col-sm-4 cart-megamenu">
+					<div class="cart-hover">
+						<a href="cart.php"> <img alt="" src="/public/common/main/imgs/cart-icon.png" /> </a>
+						<span class="cnt crl-bg">0</span><span class="price"></span>
+						<span class="cnt crl-bg">1</span> <span class="price">￥22.0</span>
+						<ul class="pop-up-box cart-popup">
+
+							<li class="cart-list">
+								<div class="cart-img"> <img src="#" alt=""> </div>
+								<div class="cart-title">
+									<div class="fsz-16">
+										<a href="#"><strong>hhh</strong><span class="light-font">vvv</span></a>
+										<h6 class="sub-title-1">haochihaochi</h6>
+									</div>
+									<div class="price">
+										<strong class="clr-txt">￥22.00</strong> <del class="light-font">￥22.00</del>
+									</div>
+								</div>
+								<div class="close-icon">
+									<a href="#" onclick="delFromCart(1);return false;"><i class="fa fa-close clr-txt"></i></a>
+								</div>
+							</li>
+							<li class="cart-list buttons">
+								<div class="pull-left">
+									<a href="cart.php" class="theme-btn-sm-2">View Cart</a>
+								</div>
+								<div class="pull-right">
+									<a href="sendOrder.php" class="theme-btn-sm-3"> Checkout </a>
+								</div>
+							</li>
+
+						</ul>
+					</div>
+					<div class="responsive-toggle fa fa-bars"> </div>
+				</div>
+			</div>
+		</header>

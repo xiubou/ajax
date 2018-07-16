@@ -1,0 +1,269 @@
+*, :before, :after {
+  box-sizing: border-box;
+  margin: 0;
+  transition: 0.4s;
+}
+
+.modal1, .modal2,.modal3,.modal4{
+  height: 400px;
+  width: 650px;
+  margin: auto;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  z-index: 300;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 20px;
+  transition: .4s, box-shadow .3s .4s;
+}
+.modaldetail{
+	height: 550px;
+	width: 850px;
+	background: black;
+	border-radius: 12px;
+}
+.modal1.hidden,.modal3.hidden,.modal2.hidden,.modal4.hidden{
+  box-shadow: none;
+  transition: .4s, box-shadow 0s;
+  opacity: 0;
+  visibility: hidden;
+}
+.modal1.hidden .form,.modal2.hidden .form,.modal3.hidden .form,.modal4.hidden .form{
+  top: 100%;
+}
+.modal1.hidden .invite,.modal2.hidden .invite,.modal3.hidden .invite,.modal4.hidden .invite {
+  top: -100%;
+}
+.modal1.hidden .invite .close {
+  height: 0;
+  width: 0;
+  top: 0;
+  right: 0;
+}
+.modal2.hidden .invite .close {
+  height: 0;
+  width: 0;
+  top: 0;
+  right: 0;
+}
+.modal3.hidden .invite .close {
+  height: 0;
+  width: 0;
+  top: 0;
+  right: 0;
+}
+.modal4.hidden .invite .close {
+  height: 0;
+  width: 0;
+  top: 0;
+  right: 0;
+}
+.form, .invite {
+  background: rgba(71, 71, 71, 0.8);
+  width: 50%;
+  height: 100%;
+  padding: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+input {
+  background: rgba(255, 255, 255, 0.45);
+  width: 100%;
+  padding: 4px;
+  margin: 15px 0;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  color: #FFF;
+  font-size: 16px;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 500px #7a7a7a inset;
+  -webkit-text-fill-color: #FFF;
+}
+
+label {
+  color: #FFFFFF;
+}
+
+.mybutton {
+  background: linear-gradient(-45deg, #d73765, #ff9785);
+  padding: 10px 0px;
+  border: none;
+  border-radius: 21px;
+  outline: none;
+  overflow: hidden;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  color: #FFF;
+  font-size: 16px;
+  cursor: pointer;
+  width: 180px;
+  transform: translateX(-50%);
+}
+.mybutton:hover:before {
+  left: 110%;
+  transition: .3s;
+}
+.mybutton:before {
+  content: '';
+  background: rgba(255, 255, 255, 0.3);
+  height: 100%;
+  width: 65px;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  transform: skew(-45deg);
+  transition: 0s;
+}
+
+.invite {
+  background: linear-gradient(-45deg, #d73765, #ff9785);
+  left: 50%;
+  color:white;
+  font-family:"myfont5";
+  font-weight:normal;
+  text-align:center;
+}
+
+.details {
+  background: linear-gradient(-45deg, #ffffff, #ffffff);
+	height: 100%;
+	width: 100%;
+	border-radius: 12px;
+}
+.nope {
+    background: rgba(225,225,225,0.4);
+    padding: 10px 15px;
+    border-radius: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    font-size: 0.8em;
+    white-space: nowrap;
+    cursor: pointer;
+    transform: translateX(-50%);
+    color: #FFFFFF;
+}
+.nope:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  transform: translateX(-50%);
+}
+
+.close {
+  background: #474747;
+  height: 30px;
+  width: 30px;
+  border: 3px solid #FFF;
+  border-radius: 50%;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  cursor: pointer;
+  transition: .4s .3s;
+}
+.close:before, .close:after {
+  content: '';
+  background: #FFF;
+  height: 80%;
+  width: 3px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.close:after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.open {
+  background: linear-gradient(-45deg, #f857a6, #ff5858);
+  height: 45px;
+  width: 150px;
+  padding: 10px 20px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+}
+.open.active {
+  opacity: 1;
+  visibility: visible;
+}
+.open:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+/*modal缩小*/
+#login{
+	margin-left:-80px;
+	width:120px;
+}
+.modal1 button{
+
+	margin-left:70px;
+	width:120px;
+}
+@media (min-width:767px) and (max-width:1000px){
+	.modal1, .modal2,.modal3,.modal4{
+		height: 650px;
+		width: 93%;
+		/* margin: auto; */
+		margin: 279px auto;
+		font-size: 40px;
+	}
+	input {
+		height:50px;
+		margin:23px 0px;
+	}
+	.modal1 img, .modal2 img,.modal3 img,.modal4 img{
+		width:355px;
+	}
+	#login{
+		margin-left:-90px;
+		width:156px;
+	}
+	.modal1 button{
+		margin-left:90px;
+		width:156px;
+		line-height:40px;
+		font-size:30px;
+		border-radius:30px;
+	}
+	.radiovv{
+		width: 30px;
+		height:30px;
+		margin-left:10px;
+		margin-right:20px;
+	}
+	.input_item span{
+		font-size: 40px;
+		line-height:40px;
+		color: white;
+	}
+	.modal2 button,.modal3 button{
+		font-size:40px;
+		width:300px;
+		line-height:20px;
+		height:75px;
+		border-radius:50px;
+	}
+	.nope {
+    bottom: 49px;
+    font-size: 0.6em;
+
+	}
+}

@@ -1,0 +1,48 @@
+<!--我的后台用户管理-->
+<?php require COMMON_VIEW.'myheader.html'; ?>
+
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-10">
+				<div class="card">
+					<div class="header">
+						<h4 class="title">用户列表</h4>
+					</div>
+					<div class="content table-responsive table-full-width">
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="text-center">编号</th>
+									<th>用户名称</th>
+									<th>用户邮箱</th>
+									<th class="text-center">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach($data['data'] as $v): ?>
+								<tr>
+									<td class="text-center"><?=$v['id']?></td>
+									<td><?=$v['username']?></td>
+									<td><?=$v['email']?></td>
+									<td class="td-actions text-center">
+
+										<a href="/?p=admin&c=user&a=editu" rel="tooltip" title="修改" class="btn btn-success btn-simple btn-xs">
+											<i class="fa fa-edit"></i>
+										</a>
+										<a href="/?p=admin&c=user&a=delu" rel="tooltip" title="删除" class="btn btn-danger btn-simple btn-xs">
+											<i class="fa fa-times"></i>
+										</a>
+									</td>
+								</tr>
+								<?php endforeach;?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php require COMMON_VIEW.'myfooter.html'; ?>

@@ -1,0 +1,75 @@
+<html>
+
+	<head>
+		<title>iframe</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="main/css/menustyle.css" />
+		<link rel="stylesheet" href="main/css/gostyle.css" />
+		<link rel="stylesheet" href="main/css/font-awesome.min.css" />
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			.top1{
+				background: #404636;
+				height: 55px;
+				border-radius: 0 0 50px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- start header -->
+		
+		<div id="top" class="top1">
+
+		</div>
+		<!-- start header -->
+		<div class="header_btm">
+			<ul class="hList" style="margin-top:-1px;">
+				<li>
+					<a href="go.html" class="menu">
+						<h2 class="menu-title">主页</h2>
+					</a>
+				</li>
+				<li>
+					<a href="main.html" class="menu" target="_blank">
+						<h2 class="menu-title menu-title_2nd">美食盛况</h2>
+					</a>
+				</li>
+				<li>
+					<a href="main.html" class="menu" target="_blank">
+						<h2 class="menu-title menu-title_3rd">食谱欣赏</h2>
+					</a>
+				</li>
+				<li>
+					<a href="iframe.php?a=about.php" class="menu">
+						<h2 class="menu-title menu-title_4th">关于我们</h2>
+					</a>
+				</li>
+				<li>
+					<a href="iframe.php?a=contact.php" class="menu">
+						<h2 class="menu-title menu-title_5th">联系我们</h2>
+					</a>
+				</li>
+			</ul>
+			<a href="main.html" title="OUR LOGO"><img src="main/imgs/gologo.png" style="width: 155px;height: 40px;float: right;right: 60px;top: 10px;position: absolute;" /></a>
+		</div>
+
+		<!-- start main -->
+		<div class="goiframe" style="margin-top: -3px;">
+
+			<iframe src="<?php echo $a;?>" name="mainframe" width='100%' height='1180' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>
+
+		</div>
+
+		<!-- start footer -->
+		<footer>
+			<div class="footer1">
+				<a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
+				<div class="clear"></div>
+			</div>
+	</body>
+
+</html>

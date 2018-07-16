@@ -1,0 +1,45 @@
+<?php require COMMON_VIEW.'header.html'; ?>
+<?php require COMMON_VIEW.'top.html'; ?>
+<div class="main">
+	<?php require COMMON_VIEW.'menu.html'; ?>
+	<div class="content">
+	<div class="item">
+		<div class="title">分类修改</div>
+		<div class="top-button">相关操作：<a href="/?p=admin&c=category&a=index" class="light">分类列表</a></div>
+		<?php if($tip): ?><div class="mssage">修改成功。</div><?php endif; ?>
+		<div class="list auto">
+			<form method="post" id="form" action="/?p=admin&c=category&a=editExec">
+				<table class="t2 t3">
+					<tr><th>上级分类：</th><td>
+						<select name="pid" id="category">
+							<option value="0">顶级分类</option>
+							<?php foreach($data as $v){
+								echo '<option value="'.$v['id'].'"';
+								if($v['id']==$data[$id]['pid']){ echo 'selected'; }
+								echo '>'.str_repeat('— ', $v['level']).$v['name'].'</option>';
+							} ?>
+						</select>
+					</td></tr>
+					<tr><th>分类名称：</th><td>
+						<input type="text" name="name" value="<?=$data[$id]['name']?>" />
+						<input type="hidden" name="id" value="<?=$id?>" />
+					</td></tr>
+				</table>
+				<div class="btn">
+					<input type="submit" value="修改分类" />
+					<input type="submit" value="修改并返回" id="edit_return" />
+				</div>
+			</form>
+		</div>
+	</div>
+	</div>
+</div>
+<script>
+//Ajax表单提交
+$("#form").ajaxForm();
+//添加并返回按钮
+$("#edit_return").click(function(){
+	$("#form").append('<input type="hidden" name="return" value="1" />');
+});
+</script>
+<?php require COMMON_VIEW.'footer.html'; ?>

@@ -1,0 +1,39 @@
+<?php require COMMON_VIEW.'header.html' ?>
+<div class="usercenter">
+	<?php require COMMON_VIEW.'user_menu.html'; ?>
+	<div class="content">
+		<div class="title">我的订单</div>
+		<?php if(empty($data)): ?>
+			<div class="showinfo">
+				<p>您目前没有订单。</p>
+			</div>
+		<?php else: ?>
+			<?php foreach($data as $v): ?>
+			<!-- <?php echo "单数据print<pre>";print_r($v);
+			echo "单数据vardump";var_dump($v);
+				  echo "数据print";
+				  print_r($data);
+				  echo "数据vardump";var_dump($data);?> -->
+				<table class="order-top">
+					<tr><th>订单号码：<span>NO.<?=$v['id']?></span>　下单时间：<span><?=$v['add_time']?></span></td>
+					<td width="300" class="act">订单总价：<strong>￥<?=$v['price']?></strong>　<a href="#">立即支付</a>　<a href="#" data-id="<?=$v['id']?>" class="cancel">取消订单</a></td></tr>
+				</table>
+				<table class="order">
+					<?php foreach($v['goods'] as $vv): ?>
+						<tr><td><a href="/?a=goods&id=<?=$vv['id']?>" target="_blank"><?=$vv['name']?></a></td>
+						<td class="center" width="100"><?=$vv['num']?>件</td><td class="center" width="100"><span>￥<?=$vv['price']?></span></td></tr>
+					<?php endforeach; ?>
+					<tr><td colspan="3">收件地址：<?=$v['address']['address']?>，收件人：<?=$v['address']['consignee']?>，联系电话：<?=$v['address']['phone']?></td></tr>
+				</table>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	</div>
+</div>
+<script>
+//取消订单
+$(".cancel").ajaxButton("/?c=order&a=cancelExec",function(){
+	var id = $(this).attr("data-id");
+	return {"id":id};
+});
+</script>
+<?php require COMMON_VIEW.'footer.html'; ?>

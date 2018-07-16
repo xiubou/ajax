@@ -1,0 +1,67 @@
+<!--我的后台首页-->
+<?php require COMMON_VIEW.'myheader.html'; ?>
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="card ">
+				<div class="header">
+					<h4 class="title text-center">系统信息</h4>
+				</div>
+				<div class="content table-responsive table-full-width">
+					<table class="table table-hover table-striped">
+						<tbody>
+							<tr>
+								<td class="text-center mytd" style="font-size: 18px;"><strong>系统名称</strong></td>
+								<td class="text-center mytdd">食藏者电子商城</td>
+							</tr>
+							<tr>
+								<td class="text-center mytd" style="font-size: 18px;"><strong>系统队伍</strong></td>
+								<td class="text-center mytdd">L.W.W.&C.Y.C.林韦唯&陈昱辰</td>
+							</tr>
+							<tr>
+								<td class="text-center mytd" style="font-size: 18px;"><strong>我们的信息</strong></td>
+								<td class="text-center mytdd">31501142&31501174</td>
+							</tr>
+							<tr>
+								<td class="text-center mytd" style="font-size: 18px;"><strong>所在班级</strong></td>
+								<td class="text-center mytdd">信管1501&信管1502</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="card ">
+				<div class="header">
+					<h4 class="title text-center">环境信息</h4>
+				</div>
+				<div class="content table-responsive table-full-width">
+					<table class="table table-hover table-striped">
+						<tbody>
+							
+							<tr>
+								<td class="text-center" style="font-size: 18px;"><strong>MYSQL版本</strong></td>
+								<td class="text-center mytdd"><?=$serverInfo['mysql_version']?></td>
+							</tr>
+							<tr>
+								<td class="text-center" style="font-size: 18px;"><strong>运行时间</strong></td>
+								<td class="text-center mytdd"><?=$serverInfo['server_time']?></td>
+							</tr>
+							<tr>
+								<td class="text-center" style="font-size: 18px;"><strong>文件上传限制</strong></td>
+								<td class="text-center mytdd"><?=$serverInfo['max_upload']?></td>
+							</tr>
+							<tr>
+								<td class="text-center" style="font-size: 18px;"><strong>系统环境</strong></td>
+								<td class="text-center mytdd"><?=$serverInfo['server_version']?></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php require COMMON_VIEW.'myfooter.html'; ?>
